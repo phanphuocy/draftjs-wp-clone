@@ -1,0 +1,9 @@
+@import "../../../styles/colors";
+
+.adminHeaderContainer {
+    background-color: $plum-500;
+    display: flex;
+    justify-content: space-between;;
+    height: 46px;
+    width: 100%;
+}

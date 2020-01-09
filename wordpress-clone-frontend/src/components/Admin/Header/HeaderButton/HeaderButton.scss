@@ -1,0 +1,19 @@
+@import "../../../../styles//colors";
+
+.HeaderButton {
+    background-color: $plum-500;
+    border-top: 4px $plum-700 solid;
+    box-sizing: border-box;
+    color: white;
+    font-family: Barlow;
+    font-size: 14px;
+    height: 100%;
+    transition: background-color 0.5s ease;
+    width: 100px;
+
+}
+
+.HeaderButton:hover {
+    background-color: $plum-300;
+    border-top: 4px $plum-500 solid;
+}
