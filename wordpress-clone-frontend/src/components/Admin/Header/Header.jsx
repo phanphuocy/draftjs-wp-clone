@@ -1,21 +1,28 @@
-import React from 'react';
+import React from "react";
 import "./Header.scss";
+
+// Import custom icon
+import { MdVisibility } from "react-icons/md";
+import { MdSettings } from "react-icons/md";
 
 // Import custom components
 import HeaderButton from "./HeaderButton/HeaderButton";
+import HeaderHamburgerButton from "./HeaderHamburgerButton/HeaderHamburgerButton";
 import AddPostButton from "./AddPostButton/AddPostButton";
 
 const Header = () => {
-    return (
-        <div className="adminHeaderContainer">
-           <div>
-               <HeaderButton buttonName="Admin" />
-               <HeaderButton buttonName="Preview" />
-
-           </div>
-           <AddPostButton buttonName="Viết" />
+  return (
+    <header className="adminHeaderContainer">
+      <div className="adminHeaderLeftNavigation">
+        <HeaderHamburgerButton />
+        <div className="navigation-button-wrap">
+          <HeaderButton buttonName="Admin" buttonIcon={<MdSettings />} />
+          <HeaderButton buttonName="Preview" buttonIcon={<MdVisibility />} />
         </div>
-    )
-}
+      </div>
+      <AddPostButton buttonName="Viết" />
+    </header>
+  );
+};
 
 export default Header;

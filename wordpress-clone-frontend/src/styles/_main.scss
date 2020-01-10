@@ -1,3 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Barlow:regular,bold,italic&subset=latin,latin-ext');
+@import url("https://fonts.googleapis.com/css?family=Barlow:regular,semibold,bold,italic&subset=latin,latin-ext");
 
 $Barlow: Barlow, sans-serif;
+
+html {
+  font-size: 14px;
+}
