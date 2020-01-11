@@ -16,8 +16,16 @@ const Header = () => {
       <div className="adminHeaderLeftNavigation">
         <HeaderHamburgerButton />
         <div className="navigation-button-wrap">
-          <HeaderButton buttonName="Admin" buttonIcon={<MdSettings />} />
-          <HeaderButton buttonName="Preview" buttonIcon={<MdVisibility />} />
+          <HeaderButton
+            buttonName="Admin"
+            buttonIcon={<MdSettings />}
+            url="/admin"
+          />
+          <HeaderButton
+            buttonName="Preview"
+            buttonIcon={<MdVisibility />}
+            url="/preview"
+          />
         </div>
       </div>
       <AddPostButton buttonName="Viết" />

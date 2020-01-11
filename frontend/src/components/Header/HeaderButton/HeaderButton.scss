@@ -1,4 +1,4 @@
-@import "../../../../styles//colors";
+@import "../../../styles//colors";
 
 .HeaderButton {
   background-color: $plum-500;
@@ -26,6 +26,11 @@
 }
 
 .HeaderButton:hover {
+  background-color: $plum-300;
+  border-top: 4px $plum-500 solid;
+}
+
+.active > .HeaderButton {
   background-color: $plum-300;
   border-top: 4px $plum-500 solid;
 }
