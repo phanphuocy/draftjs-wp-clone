@@ -17,6 +17,10 @@ const HeaderButton = props => {
   );
 };
 
-HeaderButton.propTypes = {};
+HeaderButton.propTypes = {
+  buttonName: PropTypes.string.isRequired,
+  buttonIcon: PropTypes.string,
+  url: PropTypes.string.isRequired
+};
 
 export default HeaderButton;

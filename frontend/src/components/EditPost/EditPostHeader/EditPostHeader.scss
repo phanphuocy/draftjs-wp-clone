@@ -1,0 +1,36 @@
+@import "../../../styles/colors";
+@import "../../../styles/constants";
+@import "../../../styles/main";
+
+@mixin light-border {
+  border: 0.01px #eee solid;
+}
+
+.ep-header-container {
+  @include light-border;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  height: 46px;
+  width: 100%;
+
+  .ep-header-left {
+    display: flex;
+  }
+}
+
+.back-button {
+  @include light-border;
+  background-color: white;
+  color: $plum-500;
+  font: {
+    family: $Barlow;
+    size: 14px;
+  }
+  height: 100%;
+  width: 100px;
+
+  &:hover {
+    background-color: #ddd;
+  }
+}

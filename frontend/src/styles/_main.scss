@@ -1,8 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow:regular,semibold,bold,italic&subset=latin,latin-ext");
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,600&display=swap");
 
-$Barlow: Barlow, sans-serif;
+$Barlow: "Barlow", sans-serif;
+$IBMSerif: "IBM Plex Serif", serif;
 
 html {
   background-color: beige;
+  font-family: $Barlow;
   font-size: 14px;
+}
+
+body {
+  font-family: $Barlow;
 }

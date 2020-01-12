@@ -1,12 +1,15 @@
 @import "../../../styles//colors";
 
 .HeaderButton {
+  align-items: center;
   background-color: $plum-500;
   border-top: 4px $plum-700 solid;
   box-sizing: border-box;
   color: white;
+  display: flex;
+  justify-content: center;
   font-family: Barlow;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   height: 100%;
   transition: background-color 0.5s ease;
@@ -14,8 +17,8 @@
 
   svg {
     height: 1.2rem;
-    position: relative;
-    top: 0.2rem;
+    // position: relative;
+    // top: 0.2rem;
     width: 1.2rem;
     margin-right: 0.4rem;
   }
