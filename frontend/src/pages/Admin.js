@@ -1,5 +1,8 @@
 import React from "react";
 
+// Import mockup data
+import postData from "../mockupData/postData";
+
 // Import layout
 import SmallBoxContainer from "../components/stateless/SmallBoxContainer/SmallBoxContainer";
 
@@ -13,8 +16,8 @@ const Admin = () => {
     <React.Fragment>
       <Header />
       <SmallBoxContainer>
-        <PostsNavigation />
-        <PostsList />
+        <PostsNavigation postData={postData} />
+        <PostsList postData={postData} />
       </SmallBoxContainer>
     </React.Fragment>
   );

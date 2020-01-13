@@ -19,7 +19,7 @@ const HeaderButton = props => {
 
 HeaderButton.propTypes = {
   buttonName: PropTypes.string.isRequired,
-  buttonIcon: PropTypes.string,
+  buttonIcon: PropTypes.object,
   url: PropTypes.string.isRequired
 };
 

@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./PostsNavigation.scss";
+import PropTypes from "prop-types";
 
 // Import routers
 import { Link, useLocation } from "react-router-dom";
 
 const PostsNavigationButton = props => {
   let { url, name, quanlity, currentPath, isActive } = props;
-  console.log(url, url === currentPath);
   return (
     <li>
       <Link to={url} className={isActive}>
@@ -16,34 +16,55 @@ const PostsNavigationButton = props => {
   );
 };
 
-function PostsNavigation() {
+const PostsNavigation = props => {
   let currentPath = useLocation().pathname;
-  let buttonGroup = [
+  const { postData } = props;
+  const [buttonGroup, setButtonGroup] = useState([
     {
+      key: "status01",
       url: "/admin/published",
+      type: "published",
       name: "Đã Đăng",
-      quanlity: 12
+      quanlity: 0
     },
     {
+      key: "status02",
       url: "/admin/draft",
+      type: "draft",
       name: "Đang viết",
-      quanlity: 1
+      quanlity: 0
     },
     {
+      key: "status03",
       url: "/admin/trashed",
+      type: "trashed",
       name: "Đã Xóa",
-      quanlity: 12
+      quanlity: 0
     }
-  ];
+  ]);
+
+  useEffect(() => {
+    console.log("im re rendered");
+    console.log("post nav", typeof postData);
+    Object.keys(postData).forEach(post => {
+      let match = buttonGroup.filter(
+        button => button.type === postData[post].status
+      );
+      match[0].quanlity++;
+      // Why this works without spreading match array????????????????????????
+      setButtonGroup([...buttonGroup]);
+    });
+  }, []);
+
   return (
     <div className="post-navigation-container">
       <h2 className="post-navigation-title">Bài viết</h2>
       <div className="post-navigation-group-button">
         <ul>
           {buttonGroup.map(button => {
-            console.log(button);
             return (
               <PostsNavigationButton
+                key={button.key}
                 url={button.url}
                 name={button.name}
                 quanlity={button.quanlity}
@@ -55,6 +76,6 @@ function PostsNavigation() {
       </div>
     </div>
   );
-}
+};
 
 export default PostsNavigation;
