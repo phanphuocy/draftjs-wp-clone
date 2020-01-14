@@ -17,7 +17,7 @@ const BackButton = props => {
 const EditPostHeader = () => {
   let history = useHistory();
   const goBack = () => {
-    history.push("/admin");
+    history.push("/admin/published");
   };
   return (
     <header className="ep-header-container">

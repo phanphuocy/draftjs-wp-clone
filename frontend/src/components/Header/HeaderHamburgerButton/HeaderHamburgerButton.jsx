@@ -24,11 +24,11 @@ const HeaderHamburgerButton = props => {
               <ul>
                 <li>
                   <MdSettings />
-                  <a href="#">Admin</a>
+                  <a href="/admin">Admin</a>
                 </li>
                 <li>
                   <MdVisibility />
-                  <a href="#">Preview</a>
+                  <a href="/preview">Preview</a>
                 </li>
               </ul>
             </div>

@@ -5,6 +5,9 @@ import Img from "react-image";
 // Import routers
 import { Link, useLocation } from "react-router-dom";
 
+// Import custom components
+import PostOptionGroup from "../PostOptionGroup/PostOptionGroup";
+
 const PostItem = props => {
   let { date, title, thumbnailUrl } = props;
   return (
@@ -17,6 +20,12 @@ const PostItem = props => {
       </div>
       <div className="post-item-right">
         <Img src={process.env.PUBLIC_URL + thumbnailUrl} width={100} />
+        <PostOptionGroup
+          postId={props.postId}
+          editSelectPost={props.editSelectPost}
+          deleteSelectedPost={props.deleteSelectedPost}
+          draftSelectedPost={props.draftSelectedPost}
+        />
       </div>
     </div>
   );
@@ -43,9 +52,13 @@ const PostsList = props => {
           return (
             <PostItem
               key={post.id}
+              postId={post.id}
               title={post.title}
               date={post.dateUpdated}
               thumbnailUrl={post.thumbnailUrl}
+              editSelectPost={props.editSelectPost}
+              deleteSelectedPost={props.deleteSelectedPost}
+              draftSelectedPost={props.draftSelectedPost}
             />
           );
         })}

@@ -1,0 +1,19 @@
+$button-size-width: 12rem;
+$button-size-height: 2rem;
+
+@mixin flexbox {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.post-option-button-group {
+  @include flexbox;
+  justify-content: flex-start;
+  height: $button-size-height;
+  width: $button-size-width;
+
+  button:hover {
+    background-color: yellow;
+  }
+}

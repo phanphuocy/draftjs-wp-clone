@@ -17,25 +17,25 @@ const PostsNavigationButton = props => {
 };
 
 const PostsNavigation = props => {
-  let currentPath = useLocation().pathname;
+  const currentPath = useLocation().pathname;
   const { postData } = props;
   const [buttonGroup, setButtonGroup] = useState([
     {
-      key: "status01",
+      key: "status-01",
       url: "/admin/published",
       type: "published",
       name: "Đã Đăng",
       quanlity: 0
     },
     {
-      key: "status02",
+      key: "status-02",
       url: "/admin/draft",
       type: "draft",
       name: "Đang viết",
       quanlity: 0
     },
     {
-      key: "status03",
+      key: "status-03",
       url: "/admin/trashed",
       type: "trashed",
       name: "Đã Xóa",
@@ -44,17 +44,25 @@ const PostsNavigation = props => {
   ]);
 
   useEffect(() => {
-    console.log("im re rendered");
-    console.log("post nav", typeof postData);
-    Object.keys(postData).forEach(post => {
-      let match = buttonGroup.filter(
-        button => button.type === postData[post].status
-      );
-      match[0].quanlity++;
-      // Why this works without spreading match array????????????????????????
-      setButtonGroup([...buttonGroup]);
+    // Create a copy of button group to re-calculate
+    let buttonGroupCopy = [...buttonGroup];
+
+    // Reset button group
+    buttonGroupCopy.forEach(button => (button.quanlity = 0));
+
+    // Counting number of posts per button
+    buttonGroupCopy.forEach((button, buttonIndex) => {
+      Object.keys(postData).forEach(index => {
+        if (postData[index].status === button.type) {
+          // this also works: buttonGroupCopy[buttonIndex].quanlity++;
+          button.quanlity++;
+        }
+      });
     });
-  }, []);
+
+    // Aplly new state
+    setButtonGroup(buttonGroupCopy);
+  }, [postData]);
 
   return (
     <div className="post-navigation-container">
@@ -76,6 +84,13 @@ const PostsNavigation = props => {
       </div>
     </div>
   );
+};
+
+PostsNavigationButton.propTypes = {
+  url: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  quanlity: PropTypes.number.isRequired,
+  isActive: PropTypes.bool.isRequired
 };
 
 export default PostsNavigation;

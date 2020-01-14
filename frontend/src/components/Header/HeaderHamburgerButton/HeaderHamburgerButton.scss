@@ -75,9 +75,14 @@ $transition_duration: 0.4s;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
+}
+
+// Toggle menu when button is checked
+.menu-wrap .toggler:checked ~ .menu {
+  display: flex;
 }
 
 .menu-wrap .menu > div {
