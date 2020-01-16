@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import useDeepCompareEffect from "use-deep-compare-effect";
 import "./PostsList.scss";
 import Img from "react-image";
+
+// Import context
+import PostContext from "../../../context/postContext/postContext";
 
 // Import routers
 import { Link, useLocation } from "react-router-dom";
@@ -10,20 +13,20 @@ import { Link, useLocation } from "react-router-dom";
 import PostOptionGroup from "../PostOptionGroup/PostOptionGroup";
 
 const PostItem = props => {
-  let { date, title, thumbnailUrl, postId } = props;
+  let { date, title, thumbnailUrl, post } = props;
   return (
     <div className="post-list-item">
       <div className="post-item-left">
         <h3 className="post-item-title">
-          <Link to={"/admin/edit-post/" + postId}>{title}</Link>
+          <Link to={"/admin/edit-post/" + post.id}>{title}</Link>
         </h3>
         <span className="post-item-date">{date}</span>
       </div>
       <div className="post-item-right">
         <Img src={process.env.PUBLIC_URL + thumbnailUrl} width={100} />
         <PostOptionGroup
-          postId={props.postId}
-          editSelectPost={props.editSelectPost}
+          post={props.post}
+          editSelectedPost={props.editSelectedPost}
           deleteSelectedPost={props.deleteSelectedPost}
           draftSelectedPost={props.draftSelectedPost}
         />
@@ -33,36 +36,20 @@ const PostItem = props => {
 };
 
 const PostsList = props => {
-  let {
-    postData,
-    editSelectPost,
-    deleteSelectedPost,
-    draftSelectedPost
-  } = props;
+  // Using context to display data and receive functions
+  const postContext = useContext(PostContext);
+  const {posts, editSelectedPost, deleteSelectedPost, draftSelectedPost} = postContext;
 
+  // Doing filtering display posts
   const [displayPosts, setDisplayPosts] = useState([]);
 
+  // Try to render as the path changed and posts change
   let path = useLocation().pathname.replace("/admin/", "");
-
-  const changeDisplayList = () => {
-    let filtered = postData.filter(post => post.status === path);
-    setDisplayPosts(filtered);
-  };
-
-  // Try to render as the path changed
   useEffect(() => {
     console.log("useEffect");
-    let filtered = postData.filter(post => post.status === path);
+    let filtered = posts.filter(post => post.status === path);
     setDisplayPosts(filtered);
-  }, [path]);
-
-  // Try to re-render as the postData props (which is not works by useEffect...
-  // .. due to useEffect() is shallow comparing
-  useDeepCompareEffect(() => {
-    console.log("useDeepEffect");
-    let filtered = postData.filter(post => post.status === path);
-    setDisplayPosts(filtered);
-  }, [props.postData]);
+  }, [path, posts]);
 
   return (
     <div className="post-list-container">
@@ -74,11 +61,11 @@ const PostsList = props => {
           return (
             <PostItem
               key={post.id}
-              postId={post.id}
+              post={post}
               title={post.title}
               date={post.dateUpdated}
               thumbnailUrl={post.thumbnailUrl}
-              editSelectPost={editSelectPost}
+              editSelectedPost={editSelectedPost}
               deleteSelectedPost={deleteSelectedPost}
               draftSelectedPost={draftSelectedPost}
             />

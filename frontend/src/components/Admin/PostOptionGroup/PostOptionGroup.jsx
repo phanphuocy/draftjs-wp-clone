@@ -6,11 +6,11 @@ import "./PostOptionGroup.scss";
 const PostOptionButtonGroup = props => {
   return (
     <div className="post-option-button-group">
-      <button onClick={() => props.editSelectPost(props.postId)}>Edit</button>
-      <button onClick={() => props.deleteSelectedPost(props.postId)}>
+      <button onClick={() => props.editSelectedPost(props.post)}>Edit</button>
+      <button onClick={() => props.deleteSelectedPost(props.post)}>
         Delete
       </button>
-      <button onClick={() => props.draftSelectedPost(props.postId)}>
+      <button onClick={() => props.draftSelectedPost(props.post)}>
         2Draft
       </button>
     </div>
@@ -18,11 +18,11 @@ const PostOptionButtonGroup = props => {
 };
 
 const PostOptionGroup = props => {
-  let { postId } = props;
+  let { post } = props;
   return (
     <PostOptionButtonGroup
-      postId={postId}
-      editSelectPost={props.editSelectPost}
+        post={post}
+      editSelectedPost={props.editSelectedPost}
       deleteSelectedPost={props.deleteSelectedPost}
       draftSelectedPost={props.draftSelectedPost}
     />

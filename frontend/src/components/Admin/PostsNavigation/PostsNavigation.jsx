@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./PostsNavigation.scss";
 import PropTypes from "prop-types";
+
+import PostContext from "../../../context/postContext/postContext";
 
 // Import routers
 import { Link, useLocation } from "react-router-dom";
@@ -20,8 +22,11 @@ const PostsNavigationButton = props => {
 };
 
 const PostsNavigation = props => {
+  // Using context
+  const postContext = useContext(PostContext);
+  const {posts, editSelectedPost, deleteSelectedPost, draftSelectedPost} = postContext;
+
   const currentPath = useLocation().pathname;
-  const { postData } = props;
   const [buttonGroup, setButtonGroup] = useState([
     {
       key: "status-01",
@@ -55,8 +60,8 @@ const PostsNavigation = props => {
 
     // Counting number of posts per button
     buttonGroupCopy.forEach((button, buttonIndex) => {
-      Object.keys(postData).forEach(index => {
-        if (postData[index].status === button.type) {
+      Object.keys(posts).forEach(index => {
+        if (posts[index].status === button.type) {
           // this also works: buttonGroupCopy[buttonIndex].quanlity++;
           button.quanlity++;
         }
@@ -65,8 +70,7 @@ const PostsNavigation = props => {
 
     // Aplly new state
     setButtonGroup(buttonGroupCopy);
-    // eslint-disable-next-line
-  }, []);
+  }, [posts]);
 
   return (
     <div className="post-navigation-container">
