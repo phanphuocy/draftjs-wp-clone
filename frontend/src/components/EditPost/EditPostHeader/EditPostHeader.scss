@@ -6,6 +6,19 @@
   border: 0.01px #eee solid;
 }
 
+.save-post-btn {
+  background-color: $magenta-500;
+  border-radius: 4px;
+  color: white;
+  height: 32px;
+  width: 92px;
+  margin-right: 1rem;
+
+  &:hover {
+    background-color: $magenta-700;
+  }
+}
+
 .ep-header-container {
   @include light-border;
   background-color: white;
@@ -16,6 +29,11 @@
 
   .ep-header-left {
     display: flex;
+  }
+
+  .ep-header-right {
+    display: flex;
+    align-items: center;
   }
 }
 

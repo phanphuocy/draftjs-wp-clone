@@ -1,0 +1,20 @@
+@import "../../../styles/main";
+
+.heading-form {
+  border: 0.01px #eee solid;
+  width: 100%;
+  min-height: 50px;
+  margin-bottom: 1.4rem;
+  padding: 1rem;
+
+  textarea {
+    font: {
+      family: $IBMSerif;
+      size: 24px;
+      weight: 600;
+    }
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+}

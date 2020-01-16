@@ -1,0 +1,19 @@
+@import "../../../styles/colors";
+
+button.new-post-btn {
+  background-color: $salmon-500;
+  border-radius: 4px;
+  color: white;
+  font: {
+    size: 12px;
+  }
+  height: 32px;
+  margin: {
+    right: 1rem;
+  }
+  width: 8rem;
+
+  &:hover {
+    background-color: $salmon-700;
+  }
+}

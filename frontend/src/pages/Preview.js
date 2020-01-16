@@ -2,7 +2,6 @@ import React from "react";
 
 // Import custom components
 import Header from "../components/Header/Header";
-import { Route } from "react-router-dom";
 
 const Preview = () => {
   return (

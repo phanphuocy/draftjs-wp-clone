@@ -13,8 +13,20 @@ const BackButton = props => {
     </button>
   );
 };
+const SavePostButton = props => {
+  const { createNewPost } = props;
+  const onClickHandler = () => {
+    createNewPost();
+  };
+  return (
+    <button className="save-post-btn" onClick={onClickHandler}>
+      Đăng
+    </button>
+  );
+};
 
-const EditPostHeader = () => {
+const EditPostHeader = props => {
+  const { createNewPost } = props;
   let history = useHistory();
   const goBack = () => {
     history.push("/admin/published");
@@ -23,6 +35,9 @@ const EditPostHeader = () => {
     <header className="ep-header-container">
       <div className="ep-header-left">
         <BackButton goBack={goBack} />
+      </div>
+      <div className="ep-header-right">
+        <SavePostButton createNewPost={createNewPost} />
       </div>
     </header>
   );

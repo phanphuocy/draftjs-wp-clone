@@ -5,11 +5,14 @@ import PropTypes from "prop-types";
 // Import routers
 import { Link, useLocation } from "react-router-dom";
 
+// Import custom components
+import NewPostButton from "../NewPostButton/NewPostButton";
+
 const PostsNavigationButton = props => {
-  let { url, name, quanlity, currentPath, isActive } = props;
+  let { url, name, quanlity, isActive } = props;
   return (
     <li>
-      <Link to={url} className={isActive}>
+      <Link to={url} className={isActive ? "active" : null}>
         {name} <span className="postsQuanlity">{quanlity}</span>
       </Link>
     </li>
@@ -62,25 +65,29 @@ const PostsNavigation = props => {
 
     // Aplly new state
     setButtonGroup(buttonGroupCopy);
-  }, [postData]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="post-navigation-container">
       <h2 className="post-navigation-title">Bài viết</h2>
-      <div className="post-navigation-group-button">
-        <ul>
-          {buttonGroup.map(button => {
-            return (
-              <PostsNavigationButton
-                key={button.key}
-                url={button.url}
-                name={button.name}
-                quanlity={button.quanlity}
-                isActive={button.url === currentPath ? "active" : null}
-              />
-            );
-          })}
-        </ul>
+      <div className="post-navigation-flexbar">
+        <div className="post-navigation-group-button">
+          <ul>
+            {buttonGroup.map(button => {
+              return (
+                <PostsNavigationButton
+                  key={button.key}
+                  url={button.url}
+                  name={button.name}
+                  quanlity={button.quanlity}
+                  isActive={button.url === currentPath}
+                />
+              );
+            })}
+          </ul>
+        </div>
+        <NewPostButton />
       </div>
     </div>
   );
