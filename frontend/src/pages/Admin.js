@@ -2,6 +2,7 @@ import React from "react";
 
 // Import layout
 import SmallBoxContainer from "../components/stateless/SmallBoxContainer/SmallBoxContainer";
+import AdminFooter from "../components/stateless/AdminFooter/AdminFooter";
 
 // Import custom components
 import Header from "../components/Header/Header";
@@ -32,6 +33,7 @@ const Admin = props => {
           draftSelectedPost={draftSelectedPost}
         />
       </SmallBoxContainer>
+      <AdminFooter />
     </React.Fragment>
   );
 };

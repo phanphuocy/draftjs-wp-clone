@@ -11,7 +11,6 @@ $button-size-height: 2rem;
   @include flexbox;
   justify-content: flex-start;
   height: $button-size-height;
-  width: $button-size-width;
 
   button:hover {
     background-color: yellow;

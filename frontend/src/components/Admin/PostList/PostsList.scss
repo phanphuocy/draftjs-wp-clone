@@ -50,6 +50,7 @@
     }
 
     .post-item-date {
+      color: #666;
       font-size: 12px;
     }
   }
@@ -57,6 +58,7 @@
   .post-item-right {
     align-items: center;
     display: flex;
+    justify-content: flex-end;
     max-width: 30%;
     overflow: hidden;
     padding: {

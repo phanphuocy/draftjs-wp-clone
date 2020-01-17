@@ -5,19 +5,26 @@ import "./PostOptionGroup.scss";
 
 // Import context
 import PostContext from "../../../context/postContext/postContext";
+import { useHistory } from "react-router-dom";
 
 const PostOptionButtonGroup = ({ post }) => {
   const postContext = useContext(PostContext);
-  const {
-    editSelectedPost,
-    deleteSelectedPost,
-    draftSelectedPost
-  } = postContext;
+  const { deleteSelectedPost, draftSelectedPost } = postContext;
+
+  let history = useHistory();
+
+  // Navigate to post edit page when click edit button
+  const navigateToEdit = postId => {
+    history.push("/admin/edit-post/" + postId);
+  };
+
   return (
     <div className="post-option-button-group">
-      <button onClick={() => editSelectedPost(post)}>Edit</button>
+      <button onClick={() => navigateToEdit(post.id)}>Edit</button>
       <button onClick={() => deleteSelectedPost(post)}>Delete</button>
-      <button onClick={() => draftSelectedPost(post)}>2Draft</button>
+      {post.status !== "draft" && (
+        <button onClick={() => draftSelectedPost(post)}>2Draft</button>
+      )}
     </div>
   );
 };

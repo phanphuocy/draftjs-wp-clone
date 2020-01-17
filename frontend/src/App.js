@@ -16,53 +16,31 @@ import {
 // Import custom pages
 import Admin from "./pages/Admin";
 import Preview from "./pages/Preview";
-import EditPost from "./pages/EditPost";
-import NewPost from "./pages/NewPost";
+import NewPost from "./pages/PostEditor";
 
 function App() {
-  // // Declaring CRUD operation functions
-  // const createNewPost = (postMetadata, postContent) => {
-  //   let newPosts = [...posts];
-  //   newPosts.unshift(postMetadata);
-  //   setPosts(newPosts);
-  //   console.log("Successfully added new post");
-  // };
-  // const editSelectPost = postId => {
-  //   console.log(postId + " to be edited");
-  // };
-  //
-  // const draftSelectedPost = postId => {
-  //   console.log(postId + " to be moved to draft");
-  //   let selectedPost = posts.filter(post => post.id === postId);
-  //   selectedPost[0].status = "draft";
-  //   let newPosts = [...posts];
-  //   console.log(newPosts);
-  //   setPosts(newPosts);
-  // };
-
   return (
-      <PostState>
-        <Router>
-          <Switch>
-            <Route path="/preview">
-              <Preview />
-            </Route>
-            <Route path="/admin/new-post">
-              <NewPost/>
-            </Route>
-            <Route path="/admin/edit-post/:postId">
-              <EditPost />
-            </Route>
-            <Route path="/admin">
-              <Admin
-              />
-            </Route>
-            <Route path="/" exact>
-              <Redirect to="/admin/published" />
-            </Route>
-          </Switch>
-        </Router>
-      </PostState>
+    <PostState>
+      <Router>
+        <Switch>
+          <Route path="/preview">
+            <Preview />
+          </Route>
+          <Route path="/admin/new-post">
+            <NewPost />
+          </Route>
+          <Route path="/admin/edit-post/:postIdSlug">
+            <NewPost />
+          </Route>
+          <Route path="/admin">
+            <Admin />
+          </Route>
+          <Route path="/" exact>
+            <Redirect to="/admin/published" />
+          </Route>
+        </Switch>
+      </Router>
+    </PostState>
   );
 }
 

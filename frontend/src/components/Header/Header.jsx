@@ -19,7 +19,7 @@ const Header = () => {
           <HeaderButton
             buttonName="Admin"
             buttonIcon={<MdSettings />}
-            url="/admin/published"
+            url="/admin"
           />
           <HeaderButton
             buttonName="Preview"

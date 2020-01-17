@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 // Import custom components
 import EditPostHeader from "../components/PostEditor/EditPostHeader/EditPostHeader";
@@ -9,11 +9,20 @@ import HeadingInputForm from "../components/PostEditor/HeadingInputForm/HeadingI
 // Import context
 import PostContext from "../context/postContext/postContext";
 
+// Import router
+import { useParams } from "react-router-dom";
+
 const uuidv1 = require("uuid/v1");
 
 const NewPost = props => {
   //
+  let { postIdSlug } = useParams();
+
+  //
   const postContext = useContext(PostContext);
+
+  //
+  const { posts } = postContext;
 
   //
   const [postMeta, setPostMeta] = useState({
@@ -24,18 +33,35 @@ const NewPost = props => {
     content: ""
   });
 
+  const [isNew, setIsNew] = useState(true);
+
+  useEffect(() => {
+    if (postIdSlug) {
+      let editPost = posts.find(post => post.id === postIdSlug);
+      if (!editPost) {
+        console.log("the id is not available: 404.");
+        return;
+      }
+      setIsNew(false);
+      setPostMeta(editPost);
+    }
+  }, []);
+
   //
   const submitHandler = () => {
     if (postMeta.title === "" || postMeta.content === "") {
       alert("Empty");
       return;
     }
-
-    postContext.createNewPost(postMeta);
+    if (isNew) {
+      postContext.createNewPost(postMeta);
+    } else {
+      postContext.editSelectedPost(postMeta);
+    }
     console.log(postMeta);
   };
 
-  const onTitleChangeHandler = title => {
+  const onTitleChangeHandler = titleNewValue => {
     let now = new Date().toTimeString();
 
     let newId;
@@ -49,7 +75,7 @@ const NewPost = props => {
       console.log("new date");
       setPostMeta({
         ...postMeta,
-        title: title,
+        title: titleNewValue,
         dateCreated: now,
         id: newId,
         status: "published"
@@ -58,7 +84,7 @@ const NewPost = props => {
       console.log("update date");
       setPostMeta({
         ...postMeta,
-        title: title,
+        title: titleNewValue,
         dateUpdated: now,
         id: newId,
         status: "published"
@@ -72,13 +98,20 @@ const NewPost = props => {
 
   return (
     <div className="white-bg">
-      <EditPostHeader submitHandler={submitHandler} />
+      <EditPostHeader
+        submitHandler={submitHandler}
+        postLength={posts.length}
+        isNew={isNew}
+      />
       <SmallBoxContainer whiteBackground>
         <HeadingInputForm
           onTitleChangeHandler={onTitleChangeHandler}
           postMeta={postMeta}
         />
-        <Editor onContentSavedHandler={onContentSavedHandler} />
+        <Editor
+          onContentSavedHandler={onContentSavedHandler}
+          postMeta={postMeta}
+        />
       </SmallBoxContainer>
     </div>
   );

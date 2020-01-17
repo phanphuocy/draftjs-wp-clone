@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import useDeepCompareEffect from "use-deep-compare-effect";
 import "./PostsList.scss";
 import Img from "react-image";
 

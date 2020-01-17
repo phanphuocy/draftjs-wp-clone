@@ -29,6 +29,23 @@
 
   .ep-header-left {
     display: flex;
+    align-items: center;
+
+    .site-name {
+      margin-left: 1.2rem;
+    }
+
+    .post-length {
+      border-radius: 0.5rem;
+      border: 0.8px #ddd solid;
+      color: #ddd;
+      display: inline-block;
+      height: 1rem;
+      font-size: 10px;
+      margin-left: 0.6rem;
+      width: 1.4rem;
+      text-align: center;
+    }
   }
 
   .ep-header-right {

@@ -1,5 +1,6 @@
 import React from "react";
 import "./EditPostHeader.scss";
+import PropTypes from "prop-types";
 
 // Import custom components
 
@@ -14,19 +15,18 @@ const BackButton = props => {
   );
 };
 const SavePostButton = props => {
-  const { submitHandler } = props;
+  const { submitHandler, isNew } = props;
   const onClickHandler = () => {
     submitHandler();
   };
   return (
     <button className="save-post-btn" onClick={onClickHandler}>
-      Đăng
+      {isNew ? "Đăng" : "Cập nhập"}
     </button>
   );
 };
 
 const EditPostHeader = props => {
-  const { createNewPost } = props;
   let history = useHistory();
   const goBack = () => {
     history.push("/admin/published");
@@ -35,12 +35,22 @@ const EditPostHeader = props => {
     <header className="ep-header-container">
       <div className="ep-header-left">
         <BackButton goBack={goBack} />
+        <p className="site-name">Phan Phước Ý</p>
+        <span className="post-length">{props.postLength}</span>
       </div>
       <div className="ep-header-right">
-        <SavePostButton submitHandler={props.submitHandler} />
+        <SavePostButton
+          submitHandler={props.submitHandler}
+          isNew={props.isNew}
+        />
       </div>
     </header>
   );
+};
+
+EditPostHeader.propTypes = {
+  submitHandler: PropTypes.func.isRequired,
+  postLength: PropTypes.number.isRequired
 };
 
 export default EditPostHeader;

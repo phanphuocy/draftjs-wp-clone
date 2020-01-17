@@ -1,4 +1,10 @@
-import { ADD_POST, DELETE_POST, UPDATE_POST, FILTER_POST } from "../types";
+import {
+  ADD_POST,
+  DELETE_POST,
+  UPDATE_POST,
+  FILTER_POST,
+  CHANGE_TO_DRAFT
+} from "../types";
 
 export default (state, action) => {
   switch (action.type) {
@@ -23,6 +29,30 @@ export default (state, action) => {
           )
         };
       }
+    case UPDATE_POST:
+      let clone = { ...action.payload };
+      return {
+        ...state,
+        posts: state.posts.map(post =>
+          post.id !== action.payload.id ? post : clone
+        )
+      };
+    case CHANGE_TO_DRAFT:
+      if (action.payload.status === "draft") {
+        return {
+          ...state
+        };
+      } else {
+        let clone = { ...action.payload };
+        clone.status = "draft";
+        return {
+          ...state,
+          posts: state.posts.map(post =>
+            post.id !== action.payload.id ? post : clone
+          )
+        };
+      }
+
     default:
       return {
         ...state

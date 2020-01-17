@@ -2,7 +2,13 @@ import React, { useReducer } from "react";
 import uuid from "uuid";
 import PostContext from "./postContext";
 import postReducer from "./postReducer";
-import { ADD_POST, DELETE_POST, UPDATE_POST, FILTER_POST } from "../types";
+import {
+  ADD_POST,
+  DELETE_POST,
+  UPDATE_POST,
+  FILTER_POST,
+  CHANGE_TO_DRAFT
+} from "../types";
 
 const PostState = props => {
   const initialState = {
@@ -151,15 +157,17 @@ const PostState = props => {
   };
 
   // Update post
-  const editSelectedPost = postId => {
-    console.log("Post", postId, " to be edited");
+  const editSelectedPost = post => {
+    console.log("Post", post.id, " to be edited");
+    dispatch({ type: UPDATE_POST, payload: post });
   };
 
   // Filter post
 
   // Change post status to draft
-  const draftSelectedPost = postId => {
-    console.log("Post", postId, " to be draft");
+  const draftSelectedPost = post => {
+    console.log("Post", post, " to be draft");
+    dispatch({ type: CHANGE_TO_DRAFT, payload: post });
   };
 
   return (
