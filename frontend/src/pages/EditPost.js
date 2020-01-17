@@ -1,7 +1,7 @@
 import React from "react";
 
 // Import custom components
-import EditPostHeader from "../components/EditPost/EditPostHeader/EditPostHeader";
+import EditPostHeader from "../components/PostEditor/EditPostHeader/EditPostHeader";
 
 const EditPost = props => {
   return (

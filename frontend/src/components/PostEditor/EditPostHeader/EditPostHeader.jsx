@@ -14,9 +14,9 @@ const BackButton = props => {
   );
 };
 const SavePostButton = props => {
-  const { createNewPost } = props;
+  const { submitHandler } = props;
   const onClickHandler = () => {
-    createNewPost();
+    submitHandler();
   };
   return (
     <button className="save-post-btn" onClick={onClickHandler}>
@@ -37,7 +37,7 @@ const EditPostHeader = props => {
         <BackButton goBack={goBack} />
       </div>
       <div className="ep-header-right">
-        <SavePostButton createNewPost={createNewPost} />
+        <SavePostButton submitHandler={props.submitHandler} />
       </div>
     </header>
   );
