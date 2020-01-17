@@ -1,3 +1,5 @@
+@import "../../styles/main";
+
 .DraftEditor-root {
   background-color: white;
   border: 1px #eee solid;
@@ -6,4 +8,15 @@
   }
   min-height: 40rem;
   padding: 1.4rem;
+}
+
+.DraftEditor-editorContainer {
+  font: {
+    family: $IBMSerif;
+    size: 14px;
+  }
+
+  div > div {
+    margin-bottom: 1rem;
+  }
 }

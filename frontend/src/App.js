@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 // Import context
 import PostState from "./context/postContext/PostState";

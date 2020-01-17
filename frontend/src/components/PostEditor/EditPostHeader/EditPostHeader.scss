@@ -2,10 +2,6 @@
 @import "../../../styles/constants";
 @import "../../../styles/main";
 
-@mixin light-border {
-  border: 0.01px #eee solid;
-}
-
 .save-post-btn {
   background-color: $magenta-500;
   border-radius: 4px;
