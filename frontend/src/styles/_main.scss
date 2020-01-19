@@ -1,8 +1,17 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow:regular,semibold,bold,italic&subset=latin,latin-ext");
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,600&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+// @font-face {
+//   font-family: "Inter Regular";
+//   font-style: normal;
+//   font-weight: normal;
+//   src: url("%PUBLIC_URL%/static/fonts/Inter-Regular.woff2") format("woff2");
+// }
 
 $Barlow: "Barlow", sans-serif;
 $IBMSerif: "IBM Plex Serif", serif;
+$Roboto: "Roboto", sans-serif;
 
 html {
   background-color: beige;
@@ -11,6 +20,7 @@ html {
 }
 
 body {
+  // font-family: $Barlow;
   font-family: $Barlow;
 }
 

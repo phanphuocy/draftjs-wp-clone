@@ -17,7 +17,7 @@ const PostState = props => {
         id: "p01",
         title: "Cảnh tượng trước mắt chúng tôi thực sự hùng vĩ.",
         dateCreated: Date(1355897837000),
-        dateUpdated: Date(1355897837000),
+        dateUpdated: Date(1355897837001),
         status: "published",
         thumbnailUrl: "/images/123123123.png"
       },
@@ -25,7 +25,7 @@ const PostState = props => {
         id: "p02",
         title: "Bầu trời trong xanh thăm thẳm, không một gợn mây.",
         dateCreated: Date(1355897837000),
-        dateUpdated: Date(1355897837000),
+        dateUpdated: Date(1355897837100),
         status: "published",
         thumbnailUrl: "/images/456456456.png"
       },
@@ -33,7 +33,7 @@ const PostState = props => {
         id: "p03",
         title: "Những con sóng lao mình vào màn đêm xanh thẫm.",
         dateCreated: Date(1355897837000),
-        dateUpdated: Date(1355897837000),
+        dateUpdated: Date(1355897836000),
         status: "draft",
         thumbnailUrl: "/images/789789789.png"
       },
@@ -41,7 +41,7 @@ const PostState = props => {
         id: "p04",
         title: "Gờ chắn màu đỏ in bóng tựa viền cánh chim lởm chởm.",
         dateCreated: Date(1355897837000),
-        dateUpdated: Date(1355897837000),
+        dateUpdated: Date(1355897836000),
         status: "published",
         thumbnailUrl: "/images/789789789.png"
       },

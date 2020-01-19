@@ -19,9 +19,7 @@ function MyEditor(props) {
 
   const plugins = [highlightPlugin];
 
-  // console.log(highlightPlugin);
-
-  // console.log(editorState);
+  console.log(editorState.getCurrentInlineStyle()._map._list._tail);
 
   // useEffect(() => {
   //   if (props.postMeta.content) {

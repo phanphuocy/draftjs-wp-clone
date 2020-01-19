@@ -1,0 +1,25 @@
+@import "../../../styles/main";
+
+.preview-header {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  width: 100%;
+
+  .leftSide {
+    margin-left: 2rem;
+
+    .site-title {
+      font: {
+        family: $Roboto;
+        weight: 300;
+      }
+    }
+  }
+
+  .rightSide {
+    margin-right: 1rem;
+  }
+}

@@ -1,0 +1,16 @@
+@import "../../../styles/constants";
+
+.medium-box-container {
+  margin: 0 auto;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 50px 0 0;
+  width: 1000px;
+  margin-bottom: 2rem;
+
+  @media screen and (max-width: $width_medium + 1) {
+    overflow: hidden;
+    padding: 50px 0 0;
+    width: 100%;
+  }
+}
