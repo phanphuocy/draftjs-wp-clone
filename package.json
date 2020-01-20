@@ -1,0 +1,30 @@
+{
+  "name": "draftjs-wordpress-clone-master",
+  "version": "1.0.0",
+  "description": "Wordpress Clone with basic CRUD operations and Draft.js editor",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phanphuocy/draftjs-wp-clone.git"
+  },
+  "author": "Phan Phuoc Y",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phanphuocy/draftjs-wp-clone/issues"
+  },
+  "homepage": "https://github.com/phanphuocy/draftjs-wp-clone#readme",
+  "dependencies": {
+    "config": "^3.2.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.3.1",
+    "mongoose": "^5.8.9"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.2",
+    "nodemon": "^2.0.2"
+  }
+}
