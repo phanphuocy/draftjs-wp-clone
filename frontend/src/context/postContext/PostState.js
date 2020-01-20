@@ -19,7 +19,9 @@ const PostState = props => {
         dateCreated: Date(1355897837000),
         dateUpdated: Date(1355897837001),
         status: "published",
-        thumbnailUrl: "/images/123123123.png"
+        thumbnailUrl: "/images/123123123.png",
+        content:
+          '{"blocks":[{"key":"36i9d","text":"This","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}'
       },
       {
         id: "p02",

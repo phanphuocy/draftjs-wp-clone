@@ -1,5 +1,6 @@
 import React from "react";
 import "./DateString.scss";
+import PropTypes from "prop-types";
 
 // import custom icons
 import { MdDateRange } from "react-icons/md";
@@ -20,7 +21,6 @@ const DateString = ({ dateUpdated }) => {
     "Tháng Mười Một",
     "Tháng Mười Hai"
   ];
-  console.log(typeof dateUpdated);
   let date = new Date(dateUpdated);
   let day, month, year;
   if (date) {
@@ -35,6 +35,10 @@ const DateString = ({ dateUpdated }) => {
       {`${month}, ${day} ${year}`}
     </span>
   );
+};
+
+DateString.propTypes = {
+  dateUpdated: PropTypes.string.isRequired
 };
 
 export default DateString;

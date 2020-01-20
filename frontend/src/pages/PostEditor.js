@@ -10,21 +10,19 @@ import HeadingInputForm from "../components/PostEditor/HeadingInputForm/HeadingI
 import PostContext from "../context/postContext/postContext";
 
 // Import router
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 const uuidv1 = require("uuid/v1");
 
-const NewPost = props => {
-  //
+const PostEditor = props => {
+  // Declare route's param, if postIdSlug is available, it's old post. Else, it's new post
   let { postIdSlug } = useParams();
 
-  //
+  // Access to global props
   const postContext = useContext(PostContext);
-
-  //
   const { posts } = postContext;
 
-  //
+  // Create an empty state for currently editing post
   const [postMeta, setPostMeta] = useState({
     id: "",
     title: "",
@@ -33,14 +31,18 @@ const NewPost = props => {
     content: ""
   });
 
+  // Create an state to store indicator whether post is new
   const [isNew, setIsNew] = useState(true);
+
+  // Define history for routing
+  const history = useHistory();
 
   useEffect(() => {
     if (postIdSlug) {
       let editPost = posts.find(post => post.id === postIdSlug);
       if (!editPost) {
         console.log("the id is not available: 404.");
-        return;
+        history.push("/404");
       }
       setIsNew(false);
       setPostMeta(editPost);
@@ -117,4 +119,4 @@ const NewPost = props => {
   );
 };
 
-export default NewPost;
+export default PostEditor;

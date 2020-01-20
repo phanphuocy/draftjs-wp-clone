@@ -1,0 +1,42 @@
+.title-section {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 360px;
+  width: 100%;
+
+  div {
+    align-items: center;
+    width: 1000px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    h1 {
+      font: {
+        size: 64px;
+      }
+    }
+  }
+}
+
+.content-section {
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  .content {
+    width: 700px;
+    padding: {
+      top: 4rem;
+      bottom: 4rem;
+    }
+    font: {
+      size: 18px;
+    }
+  }
+}

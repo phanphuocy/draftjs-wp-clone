@@ -1,18 +1,24 @@
 import React from "react";
 import "./FeedList.scss";
 
+// Import routers
+import { Link } from "react-router-dom";
+
 //
-import DateString from "../DateString/DateString";
+import DateString from "./DateString/DateString";
 
 //
 import MediumBoxContainer from "../../stateless/MediumBoxContainer/MediumBoxContainer";
 
 const FeedItem = props => {
-  const { title, dateUpdated } = props.post;
+  const { title, id, dateUpdated } = props.post;
 
   return (
     <div className="feed-item">
-      <h1 className="item-title">{title}</h1>
+      <Link to={`/preview/${id}`}>
+        <h1 className="item-title">{title}</h1>
+      </Link>
+
       <DateString dateUpdated={dateUpdated} />
       <div className="separator"></div>
     </div>

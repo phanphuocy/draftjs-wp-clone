@@ -17,12 +17,20 @@ import {
 import Admin from "./pages/Admin";
 import Preview from "./pages/Preview";
 import NewPost from "./pages/PostEditor";
+import PostView from "./pages/PostView";
+import Page404 from "./pages/Page404";
 
 function App() {
   return (
     <PostState>
       <Router>
         <Switch>
+          <Route path="/404">
+            <Page404 />
+          </Route>
+          <Route path="/preview/:postId">
+            <PostView />
+          </Route>
           <Route path="/preview">
             <Preview />
           </Route>

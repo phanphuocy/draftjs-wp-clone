@@ -14,12 +14,14 @@ function MyEditor(props) {
 
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
+  console.log(editorState);
+
   //
   const highlightPlugin = createHighlightPlugin();
 
   const plugins = [highlightPlugin];
 
-  console.log(editorState.getCurrentInlineStyle()._map._list._tail);
+  // console.log(editorState.getCurrentInlineStyle()._map._list._tail);
 
   // useEffect(() => {
   //   if (props.postMeta.content) {
