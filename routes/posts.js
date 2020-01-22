@@ -52,7 +52,9 @@ router.post(
 // @desc     Get all posts available
 router.get("/", async (req, res) => {
   try {
-    const posts = await Post.find({}).sort({ dateCreated: -1 });
+    const posts = await Post.find({})
+      .populate("hashtags")
+      .sort({ dateCreated: -1 });
     res.json(posts);
   } catch (err) {
     console.log("ROUTER GET POSTS ERROR:", err.message);
@@ -104,7 +106,14 @@ router.put(
 // @route    DELETE api/posts/:id
 // @desc     Delete a post
 router.delete("/:id", (req, res) => {
-  res.send("Delete a post");
+  const id = req.params.id;
+  Post.findByIdAndDelete(id, (err, post) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Server Error");
+    }
+    res.status(200).json(post);
+  });
 });
 
 module.exports = router;

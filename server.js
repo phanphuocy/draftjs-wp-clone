@@ -14,7 +14,7 @@ app.use(express.json({ extended: false }));
 const PORT = process.env.PORT || 5000;
 
 app.use("/api/posts", require("./routes/posts"));
-// app.use("/api/hashtags", require("./routes/hashtags"));
+app.use("/api/hashtags", require("./routes/hashtags"));
 
 app.get("/", (req, res) => {
   res.send("hellow world");

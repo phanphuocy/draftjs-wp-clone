@@ -1,13 +1,17 @@
 const mongoose = require("mongoose");
 
 const HashtagSchema = mongoose.Schema({
-  name: String,
-  slug: String,
-  url: String,
+  name: {
+    type: String,
+    required: true
+  },
+  slug: {
+    type: String,
+    required: true
+  },
   posts: [
     {
-      postId: mongoose.Schema.Types.ObjectId,
-      ref: "post"
+      type: mongoose.Schema.Types.ObjectId
     }
   ]
 });

@@ -24,7 +24,7 @@ const PostSchema = mongoose.Schema({
   hashtags: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "hashtags"
+      ref: "hashtag"
     }
   ]
 });
