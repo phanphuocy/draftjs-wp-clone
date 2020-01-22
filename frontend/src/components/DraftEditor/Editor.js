@@ -3,6 +3,8 @@ import "./Editor.scss";
 import { EditorState, RichUtils, convertToRaw } from "draft-js";
 import Editor from "draft-js-plugins-editor";
 
+import debounce from "lodash/debounce";
+
 // Import custom plugins
 import createHighlightPlugin from "./plugins/highlightPlugin";
 
@@ -21,23 +23,13 @@ function MyEditor(props) {
 
   const plugins = [highlightPlugin];
 
-  // console.log(editorState.getCurrentInlineStyle()._map._list._tail);
-
-  // useEffect(() => {
-  //   if (props.postMeta.content) {
-  //     console.log("therer something in herer");
-  //   } else {
-  //     console.log("no content");
-  //   }
-  // });
-
-  const saveContentToString = raw => {
-    // console.log("string", JSON.stringify(raw));
+  const saveContentToString = debounce(raw => {
     onContentSavedHandler(JSON.stringify(raw));
-  };
+  }, 1000);
 
   const onChangeHandler = state => {
     const contentState = state.getCurrentContent();
+
     saveContentToString(convertToRaw(contentState));
 
     setEditorState(state);

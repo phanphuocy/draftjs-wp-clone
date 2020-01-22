@@ -3,11 +3,17 @@ import {
   DELETE_POST,
   UPDATE_POST,
   FILTER_POST,
-  CHANGE_TO_DRAFT
+  CHANGE_TO_DRAFT,
+  GET_POSTS
 } from "../types";
 
 export default (state, action) => {
   switch (action.type) {
+    case GET_POSTS:
+      return {
+        ...state,
+        posts: action.payload
+      };
     case ADD_POST:
       return {
         ...state,

@@ -12,6 +12,8 @@ import PostContext from "../context/postContext/postContext";
 // Import router
 import { useParams, useHistory } from "react-router-dom";
 
+import _ from "lodash";
+
 const uuidv1 = require("uuid/v1");
 
 const PostEditor = props => {
@@ -39,7 +41,7 @@ const PostEditor = props => {
 
   useEffect(() => {
     if (postIdSlug) {
-      let editPost = posts.find(post => post.id === postIdSlug);
+      let editPost = posts.find(post => post._id === postIdSlug);
       if (!editPost) {
         console.log("the id is not available: 404.");
         history.push("/404");
@@ -60,38 +62,13 @@ const PostEditor = props => {
     } else {
       postContext.editSelectedPost(postMeta);
     }
-    console.log(postMeta);
   };
 
   const onTitleChangeHandler = titleNewValue => {
-    let now = new Date().toTimeString();
-
-    let newId;
-    if (postMeta.id === "") {
-      newId = uuidv1();
-    } else {
-      newId = postMeta.id;
-    }
-
-    if (postMeta.dateCreated === "") {
-      console.log("new date");
-      setPostMeta({
-        ...postMeta,
-        title: titleNewValue,
-        dateCreated: now,
-        id: newId,
-        status: "published"
-      });
-    } else {
-      console.log("update date");
-      setPostMeta({
-        ...postMeta,
-        title: titleNewValue,
-        dateUpdated: now,
-        id: newId,
-        status: "published"
-      });
-    }
+    setPostMeta({
+      ...postMeta,
+      title: titleNewValue
+    });
   };
 
   const onContentSavedHandler = contentString => {

@@ -62,9 +62,44 @@ router.get("/", async (req, res) => {
 
 // @route    PUT api/posts/:id
 // @desc     Update a post metadata and content
-router.put("/:id", (req, res) => {
-  res.send("Update a post");
-});
+router.put(
+  "/:id",
+  [
+    check("title", "No title provided")
+      .not()
+      .isEmpty(),
+    check("content", "No content provided")
+      .not()
+      .isEmpty(),
+    check("status", "No status provided")
+      .not()
+      .isEmpty()
+  ],
+  async (req, res) => {
+    //
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array()
+      });
+    }
+    //
+    const id = req.params.id;
+    const newPost = { ...req.body, dateUpdated: Date.now() };
+    try {
+      Post.findByIdAndUpdate(id, newPost, (err, post) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send("Server Error");
+        }
+        res.status(200).json(post);
+      });
+    } catch (err) {
+      console.log("ROUTER PUT POSTS ERROR:", err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
 
 // @route    DELETE api/posts/:id
 // @desc     Delete a post
