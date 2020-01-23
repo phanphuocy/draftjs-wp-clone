@@ -24,7 +24,7 @@ const PostsNavigationButton = props => {
 const PostsNavigation = props => {
   // Using context
   const postContext = useContext(PostContext);
-  const {posts, editSelectedPost, deleteSelectedPost, draftSelectedPost} = postContext;
+  const { posts, createEmptyEditing } = postContext;
 
   const currentPath = useLocation().pathname;
   const [buttonGroup, setButtonGroup] = useState([
@@ -91,7 +91,7 @@ const PostsNavigation = props => {
             })}
           </ul>
         </div>
-        <NewPostButton />
+        <NewPostButton createEmptyEditing={createEmptyEditing} />
       </div>
     </div>
   );

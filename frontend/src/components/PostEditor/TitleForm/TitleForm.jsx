@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import "./HeadingInputForm.scss";
+import "./TitleForm.scss";
 
 // Import custom components
 import TextareaAutosize from "react-autosize-textarea";
 
-const HeadingInputForm = props => {
+const TitleForm = props => {
   //
-  const { postMeta, onTitleChangeHandler } = props;
+  const { title, onTitleChangeHandler } = props;
   //
   const onChangeHandler = e => {
     console.log(e.target.value);
@@ -18,7 +18,7 @@ const HeadingInputForm = props => {
       <TextareaAutosize
         type="text"
         placeholder="Tựa đề"
-        value={postMeta.title}
+        value={title}
         rows={1}
         name="title"
         onChange={onChangeHandler}
@@ -27,4 +27,4 @@ const HeadingInputForm = props => {
   );
 };
 
-export default HeadingInputForm;
+export default TitleForm;

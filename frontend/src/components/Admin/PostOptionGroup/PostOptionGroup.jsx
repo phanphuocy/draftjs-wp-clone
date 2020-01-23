@@ -7,37 +7,35 @@ import "./PostOptionGroup.scss";
 import PostContext from "../../../context/postContext/postContext";
 import { useHistory } from "react-router-dom";
 
-const PostOptionButtonGroup = ({ post }) => {
+const PostOptionGroup = props => {
+  // PostOptionGroup uses two kind of props
+  // one is the post from its calling parents..
+  let { post } = props;
+
+  // ..and second is the method got from context API
   const postContext = useContext(PostContext);
-  const { deleteSelectedPost, draftSelectedPost } = postContext;
+  const {
+    deleteSelectedPost,
+    draftSelectedPost,
+    setExistedEditing
+  } = postContext;
 
   let history = useHistory();
 
   // Navigate to post edit page when click edit button
-  const navigateToEdit = postId => {
-    history.push("/admin/edit-post/" + postId);
+  const navigateToEdit = post => {
+    setExistedEditing(post);
+    history.push("/admin/edit-post/" + post._id);
   };
 
   return (
     <div className="post-option-button-group">
-      <button onClick={() => navigateToEdit(post.id)}>Edit</button>
+      <button onClick={() => navigateToEdit(post)}>Edit</button>
       <button onClick={() => deleteSelectedPost(post)}>Delete</button>
       {post.status !== "draft" && (
         <button onClick={() => draftSelectedPost(post)}>2Draft</button>
       )}
     </div>
-  );
-};
-
-const PostOptionGroup = props => {
-  let { post } = props;
-  return (
-    <PostOptionButtonGroup
-      post={post}
-      editSelectedPost={props.editSelectedPost}
-      deleteSelectedPost={props.deleteSelectedPost}
-      draftSelectedPost={props.draftSelectedPost}
-    />
   );
 };
 

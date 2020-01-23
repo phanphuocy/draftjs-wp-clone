@@ -5,9 +5,17 @@ import "./NewPostButton.scss";
 import { Link } from "react-router-dom";
 
 const NewPostButton = props => {
+  const { createEmptyEditing } = props;
+
+  const onClickHandle = () => {
+    createEmptyEditing();
+  };
+
   return (
-    <Link to="/admin/new-post">
-      <button className="new-post-btn shadow">Tạo bài mới</button>
+    <Link to="/admin/edit-post">
+      <button className="new-post-btn shadow" onClick={onClickHandle}>
+        Tạo bài mới
+      </button>
     </Link>
   );
 };

@@ -11,15 +11,15 @@ import DateString from "./DateString/DateString";
 import MediumBoxContainer from "../../stateless/MediumBoxContainer/MediumBoxContainer";
 
 const FeedItem = props => {
-  const { title, id, dateUpdated } = props.post;
+  const { title, _id, dateCreated } = props.post;
 
   return (
     <div className="feed-item">
-      <Link to={`/preview/${id}`}>
+      <Link to={`/preview/${_id}`}>
         <h1 className="item-title">{title}</h1>
       </Link>
 
-      <DateString dateUpdated={dateUpdated} />
+      <DateString dateCreated={dateCreated} />
       <div className="separator"></div>
     </div>
   );
@@ -36,7 +36,7 @@ const FeedList = props => {
     <div className="feed-main">
       <MediumBoxContainer>
         {publishedPost.map(post => (
-          <FeedItem post={post} key={post.id} />
+          <FeedItem post={post} key={post._id} />
         ))}
       </MediumBoxContainer>
     </div>

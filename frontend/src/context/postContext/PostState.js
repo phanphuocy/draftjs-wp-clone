@@ -8,145 +8,32 @@ import {
   DELETE_POST,
   UPDATE_POST,
   CHANGE_TO_DRAFT,
-  GET_POSTS
+  CHANGE_TO_TRASH,
+  GET_POSTS,
+  CREATE_EMPTY_EDITING,
+  SET_EXISTED_EDITING,
+  UPDATE_EDITING
 } from "../types";
 
 const PostState = props => {
   const initialState = {
-    posts: [
-      {
-        id: "p01",
-        title: "Cảnh tượng trước mắt chúng tôi thực sự hùng vĩ.",
-        dateCreated: "1579582767",
-        dateUpdated: "1579582767000",
-        status: "published",
-        thumbnailUrl: "/images/123123123.png",
-        content:
-          '{"blocks":[{"key":"36i9d","text":"This","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}'
-      }
-      // {
-      //   id: "p02",
-      //   title: "Bầu trời trong xanh thăm thẳm, không một gợn mây.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897837100),
-      //   status: "published",
-      //   thumbnailUrl: "/images/456456456.png"
-      // },
-      // {
-      //   id: "p03",
-      //   title: "Những con sóng lao mình vào màn đêm xanh thẫm.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897836000),
-      //   status: "draft",
-      //   thumbnailUrl: "/images/789789789.png"
-      // },
-      // {
-      //   id: "p04",
-      //   title: "Gờ chắn màu đỏ in bóng tựa viền cánh chim lởm chởm.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897836000),
-      //   status: "published",
-      //   thumbnailUrl: "/images/789789789.png"
-      // },
-      // {
-      //   id: "p05",
-      //   title: "Khi màn sương tan, con tàu đã rời cảng ba tiếng.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897837000),
-      //   status: "published",
-      //   thumbnailUrl: "/images/789789789.png"
-      // },
-      // {
-      //   id: "p06",
-      //   title: "Màn sương màu bạc tràn ngập khắp boong tàu.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897837000),
-      //   status: "published",
-      //   thumbnailUrl: "/images/789789789.png"
-      // },
-      // {
-      //   id: "p07",
-      //   title: "Mọi thiết bị và dụng cụ đều đang hoạt động.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897837000),
-      //   status: "published",
-      //   thumbnailUrl: "/images/789789789.png"
-      // },
-      // {
-      //   id: "p08",
-      //   title: "Trái đất như hình lưỡi liềm sáng rực bên dưới tàu bay.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897837000),
-      //   status: "draft",
-      //   thumbnailUrl: "/images/789789789.png"
-      // },
-      // {
-      //   id: "p09",
-      //   title: "Vừa lúc biết điều đó, chúng tôi đã rời khỏi mặt đất.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897837000),
-      //   status: "published",
-      //   thumbnailUrl: "/images/789789789.png"
-      // },
-      // {
-      //   id: "p10",
-      //   title: "Đó chỉ là vấn đề thời gian.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897837000),
-      //   status: "published",
-      //   thumbnailUrl: "/images/789789789.png"
-      // },
-      // {
-      //   id: "p11",
-      //   title: "Lửa tắt, anh dõi theo những vì sao qua cửa sổ.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897837000),
-      //   status: "published",
-      //   thumbnailUrl: "/images/789789789.png"
-      // },
-      // {
-      //   id: "p12",
-      //   title: "Gờ chắn màu đỏ in bóng tựa viền cánh chim lởm chởm.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897837000),
-      //   status: "draft",
-      //   thumbnailUrl: "/images/789789789.png"
-      // },
-      // {
-      //   id: "p13",
-      //   title: "Màn sương màu bạc tràn ngập khắp boong tàu.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897837000),
-      //   status: "published",
-      //   thumbnailUrl: "/images/789789789.png"
-      // },
-      // {
-      //   id: "p14",
-      //   title: "Tôi ngắm nhìn cơn bão, quá đẹp nhưng thật hãi hùng.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897837000),
-      //   status: "draft",
-      //   thumbnailUrl: "/images/789789789.png"
-      // },
-      // {
-      //   id: "p15",
-      //   title: "Hai bản ngã trong con người tôi có chung kỷ niệm.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897837000),
-      //   status: "trashed",
-      //   thumbnailUrl: "/images/789789789.png"
-      // },
-      // {
-      //   id: "p16",
-      //   title: "Đêm hôm đó, ngôi sao băng đầu tiên xuất hiện.",
-      //   dateCreated: Date(1355897837000),
-      //   dateUpdated: Date(1355897837000),
-      //   status: "draft",
-      //   thumbnailUrl: "/images/789789789.png"
-      // }
-    ]
+    posts: [],
+    editing: {
+      isNew: true,
+      id: "",
+      title: "",
+      content: "",
+      status: ""
+    }
   };
   const [state, dispatch] = useReducer(postReducer, initialState);
+
+  //
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
 
   // Get all posts
   const getPosts = async post => {
@@ -162,15 +49,8 @@ const PostState = props => {
   // Add post
   const createNewPost = async post => {
     //
-    const config = {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    };
-    //
     try {
       const res = await axios.post("/api/posts", post, config);
-      console.log(res);
       dispatch({ type: ADD_POST, payload: res.data });
     } catch (err) {
       console.log(err);
@@ -178,33 +58,79 @@ const PostState = props => {
   };
 
   // Delete post
-  const deleteSelectedPost = post => {
-    dispatch({ type: DELETE_POST, payload: post });
+  const deleteSelectedPost = async post => {
+    try {
+      // Check for post.status
+      if (post.status !== "trashed") {
+        post.status = "trashed";
+        const res = await axios.put(`/api/posts/${post._id}`, post, config);
+        dispatch({ type: CHANGE_TO_TRASH, payload: res.data });
+      } else {
+        const res = await axios.delete(`/api/posts/${post._id}`);
+        dispatch({ type: DELETE_POST, payload: res.data });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // Update post
-  const editSelectedPost = post => {
-    console.log("Post", post.id, " to be edited");
-    dispatch({ type: UPDATE_POST, payload: post });
+  const editSelectedPost = async post => {
+    console.log("Post", post._id, " to be edited");
+    try {
+      const res = await axios.put(`/api/posts/${post._id}`, post, config);
+      dispatch({ type: UPDATE_POST, payload: res.data });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  // Filter post
-
   // Change post status to draft
-  const draftSelectedPost = post => {
-    console.log("Post", post, " to be draft");
-    dispatch({ type: CHANGE_TO_DRAFT, payload: post });
+  const draftSelectedPost = async post => {
+    try {
+      // Check for post.status
+      if (post.status !== "draft") {
+        post.status = "draft";
+        const res = await axios.put(`/api/posts/${post._id}`, post, config);
+        dispatch({ type: CHANGE_TO_DRAFT, payload: res.data });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // BELOW IS RELATING TO EDITING POST
+  const createEmptyEditing = () => {
+    console.log("Create new editing");
+    dispatch({ type: CREATE_EMPTY_EDITING });
+  };
+
+  const setExistedEditing = post => {
+    console.log("Set a existed post to editing");
+    dispatch({ type: SET_EXISTED_EDITING, payload: post });
+  };
+
+  const updateEditing = post => {
+    console.log("Updating currently editing");
+    console.log("new state", post);
+    dispatch({ type: UPDATE_EDITING, payload: post });
   };
 
   return (
     <PostContext.Provider
       value={{
         posts: state.posts,
+        ///
         createNewPost,
         deleteSelectedPost,
         editSelectedPost,
         draftSelectedPost,
-        getPosts
+        getPosts,
+        ///
+        createEmptyEditing,
+        setExistedEditing,
+        updateEditing,
+        editing: state.editing
       }}
     >
       {props.children}

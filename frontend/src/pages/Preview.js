@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 // Import custom components
 import Header from "../components/Header/Header";
@@ -14,7 +14,11 @@ const Preview = () => {
   const postContext = useContext(PostContext);
 
   //
-  const { posts } = postContext;
+  const { posts, getPosts } = postContext;
+
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   return (
     <React.Fragment>

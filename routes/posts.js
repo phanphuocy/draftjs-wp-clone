@@ -16,27 +16,25 @@ router.post(
       .isEmpty(),
     check("content", "No content provided")
       .not()
-      .isEmpty(),
-    check("status", "No status provided")
-      .not()
       .isEmpty()
   ],
   async (req, res) => {
     //
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log(errors);
       return res.status(400).json({
         errors: errors.array()
       });
     }
-    //
-    const { title, content, status } = req.body;
+
+    const { title, content } = req.body;
     //
     try {
       const newPost = new Post({
         title,
         content,
-        status
+        status: "published"
       });
 
       const post = await newPost.save();

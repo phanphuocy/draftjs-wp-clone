@@ -4,7 +4,7 @@ import React, { useContext, useState, useEffect } from "react";
 import EditPostHeader from "../components/PostEditor/EditPostHeader/EditPostHeader";
 import Editor from "../components/DraftEditor/Editor";
 import SmallBoxContainer from "../components/stateless/SmallBoxContainer/SmallBoxContainer";
-import HeadingInputForm from "../components/PostEditor/HeadingInputForm/HeadingInputForm";
+import TitleForm from "../components/PostEditor/TitleForm/TitleForm";
 
 // Import context
 import PostContext from "../context/postContext/postContext";
@@ -20,25 +20,22 @@ const PostEditor = props => {
   // Declare route's param, if postIdSlug is available, it's old post. Else, it's new post
   let { postIdSlug } = useParams();
 
+  console.log("postIdSlug", postIdSlug);
+
   // Access to global props
   const postContext = useContext(PostContext);
-  const { posts } = postContext;
-
-  // Create an empty state for currently editing post
-  const [postMeta, setPostMeta] = useState({
-    id: "",
-    title: "",
-    dateCreated: "",
-    dateUpdated: "",
-    content: ""
-  });
-
-  // Create an state to store indicator whether post is new
-  const [isNew, setIsNew] = useState(true);
+  const {
+    posts,
+    editing,
+    updateEditing,
+    editSelectedPost,
+    createNewPost
+  } = postContext;
 
   // Define history for routing
   const history = useHistory();
 
+  // Check for valid id slug
   useEffect(() => {
     if (postIdSlug) {
       let editPost = posts.find(post => post._id === postIdSlug);
@@ -46,33 +43,29 @@ const PostEditor = props => {
         console.log("the id is not available: 404.");
         history.push("/404");
       }
-      setIsNew(false);
-      setPostMeta(editPost);
     }
   }, []);
 
   //
   const submitHandler = () => {
-    if (postMeta.title === "" || postMeta.content === "") {
-      alert("Empty");
-      return;
-    }
-    if (isNew) {
-      postContext.createNewPost(postMeta);
+    console.log("Submit button clicked");
+    if (!editing.isNew) {
+      editSelectedPost(editing);
     } else {
-      postContext.editSelectedPost(postMeta);
+      createNewPost(editing);
     }
   };
 
   const onTitleChangeHandler = titleNewValue => {
-    setPostMeta({
-      ...postMeta,
-      title: titleNewValue
-    });
+    let clone = { ...editing };
+    clone.title = titleNewValue;
+    updateEditing(clone);
   };
 
-  const onContentSavedHandler = contentString => {
-    setPostMeta({ ...postMeta, content: contentString });
+  const onContentChangeHandler = contentString => {
+    let clone = { ...editing };
+    clone.content = contentString;
+    updateEditing(clone);
   };
 
   return (
@@ -80,16 +73,16 @@ const PostEditor = props => {
       <EditPostHeader
         submitHandler={submitHandler}
         postLength={posts.length}
-        isNew={isNew}
+        isNew={editing.isNew}
       />
       <SmallBoxContainer whiteBackground>
-        <HeadingInputForm
+        <TitleForm
           onTitleChangeHandler={onTitleChangeHandler}
-          postMeta={postMeta}
+          title={editing.title}
         />
         <Editor
-          onContentSavedHandler={onContentSavedHandler}
-          postMeta={postMeta}
+          onContentChangeHandler={onContentChangeHandler}
+          post={editing}
         />
       </SmallBoxContainer>
     </div>

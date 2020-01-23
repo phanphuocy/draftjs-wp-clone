@@ -16,7 +16,7 @@ import {
 // Import custom pages
 import Admin from "./pages/Admin";
 import Preview from "./pages/Preview";
-import NewPost from "./pages/PostEditor";
+import PostEditor from "./pages/PostEditor";
 import PostView from "./pages/PostView";
 import Page404 from "./pages/Page404";
 
@@ -34,12 +34,16 @@ function App() {
           <Route path="/preview">
             <Preview />
           </Route>
-          <Route path="/admin/new-post">
+          {/* <Route path="/admin/new-post">
             <NewPost />
-          </Route>
+          </Route> */}
           <Route path="/admin/edit-post/:postIdSlug">
-            <NewPost />
+            <PostEditor />
           </Route>
+          <Route path="/admin/edit-post">
+            <PostEditor />
+          </Route>
+
           <Route path="/admin">
             <Admin />
           </Route>

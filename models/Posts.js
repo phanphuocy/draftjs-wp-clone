@@ -21,6 +21,7 @@ const PostSchema = mongoose.Schema({
     default: Date.now
   },
   dateUpdated: String,
+  //
   hashtags: [
     {
       type: mongoose.Schema.Types.ObjectId,

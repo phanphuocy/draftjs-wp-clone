@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Editor.scss";
-import { EditorState, RichUtils, convertToRaw } from "draft-js";
+import { EditorState, RichUtils, convertToRaw, convertFromRaw } from "draft-js";
 import Editor from "draft-js-plugins-editor";
 
 import debounce from "lodash/debounce";
@@ -12,11 +12,19 @@ import createHighlightPlugin from "./plugins/highlightPlugin";
 import EditorToolbar from "./EditorToolbar/EditorToolbar";
 
 function MyEditor(props) {
-  const { onContentSavedHandler } = props;
+  const { onContentChangeHandler, post } = props;
 
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   console.log(editorState);
+
+  useEffect(() => {
+    if (post.content) {
+      console.log(JSON.parse(post.content));
+      const convertedContentState = convertFromRaw(JSON.parse(post.content));
+      setEditorState(EditorState.createWithContent(convertedContentState));
+    }
+  }, []);
 
   //
   const highlightPlugin = createHighlightPlugin();
@@ -24,7 +32,7 @@ function MyEditor(props) {
   const plugins = [highlightPlugin];
 
   const saveContentToString = debounce(raw => {
-    onContentSavedHandler(JSON.stringify(raw));
+    onContentChangeHandler(JSON.stringify(raw));
   }, 1000);
 
   const onChangeHandler = state => {

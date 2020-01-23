@@ -2,9 +2,12 @@ import {
   ADD_POST,
   DELETE_POST,
   UPDATE_POST,
-  FILTER_POST,
   CHANGE_TO_DRAFT,
-  GET_POSTS
+  CHANGE_TO_TRASH,
+  GET_POSTS,
+  CREATE_EMPTY_EDITING,
+  SET_EXISTED_EDITING,
+  UPDATE_EDITING
 } from "../types";
 
 export default (state, action) => {
@@ -23,7 +26,7 @@ export default (state, action) => {
       if (action.payload.status === "trashed") {
         return {
           ...state,
-          posts: state.posts.filter(post => post.id !== action.payload.id)
+          posts: state.posts.filter(post => post._id !== action.payload._id)
         };
       } else {
         let clone = { ...action.payload };
@@ -31,7 +34,7 @@ export default (state, action) => {
         return {
           ...state,
           posts: state.posts.map(post =>
-            post.id !== action.payload.id ? post : clone
+            post._id !== action.payload._id ? post : clone
           )
         };
       }
@@ -40,11 +43,12 @@ export default (state, action) => {
       return {
         ...state,
         posts: state.posts.map(post =>
-          post.id !== action.payload.id ? post : clone
+          post._id !== action.payload._id ? post : clone
         )
       };
     case CHANGE_TO_DRAFT:
       if (action.payload.status === "draft") {
+        console.log("is draft");
         return {
           ...state
         };
@@ -54,10 +58,48 @@ export default (state, action) => {
         return {
           ...state,
           posts: state.posts.map(post =>
-            post.id !== action.payload.id ? post : clone
+            post._id !== action.payload._id ? post : clone
           )
         };
       }
+
+    case CHANGE_TO_TRASH:
+      if (action.payload.status !== "trashed") {
+        let clone = { ...action.payload };
+        clone.status = "trashed";
+        return {
+          ...state,
+          posts: state.posts.map(post =>
+            post._id !== action.payload._id ? post : clone
+          )
+        };
+      }
+
+    case CREATE_EMPTY_EDITING:
+      return {
+        ...state,
+        editing: {
+          isNew: true,
+          id: "",
+          title: "",
+          content: "",
+          status: ""
+        }
+      };
+
+    case SET_EXISTED_EDITING:
+      return {
+        ...state,
+        editing: {
+          ...action.payload,
+          isNew: false
+        }
+      };
+    case UPDATE_EDITING:
+      return {
+        ...state,
+        editing: action.payload
+      };
 
     default:
       return {
