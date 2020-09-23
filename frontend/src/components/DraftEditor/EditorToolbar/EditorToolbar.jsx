@@ -10,7 +10,7 @@ import { MdBorderColor } from "react-icons/md";
 const iconSize = 24;
 
 const EditorToolbarButton = props => {
-  const { name, icon, func } = props;
+  const { icon, func } = props;
   return (
     <button
       className="editor-toolbar-button"

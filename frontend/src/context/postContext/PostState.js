@@ -39,7 +39,6 @@ const PostState = props => {
   const getPosts = async post => {
     try {
       const res = await axios.get("/api/posts");
-      console.log(res);
       dispatch({ type: GET_POSTS, payload: res.data });
     } catch (err) {
       console.log(err);
@@ -112,7 +111,6 @@ const PostState = props => {
 
   const updateEditing = post => {
     console.log("Updating currently editing");
-    console.log("new state", post);
     dispatch({ type: UPDATE_EDITING, payload: post });
   };
 

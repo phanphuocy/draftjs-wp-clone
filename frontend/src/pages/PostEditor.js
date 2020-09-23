@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 // Import custom components
 import EditPostHeader from "../components/PostEditor/EditPostHeader/EditPostHeader";
@@ -12,15 +12,9 @@ import PostContext from "../context/postContext/postContext";
 // Import router
 import { useParams, useHistory } from "react-router-dom";
 
-import _ from "lodash";
-
-const uuidv1 = require("uuid/v1");
-
 const PostEditor = props => {
   // Declare route's param, if postIdSlug is available, it's old post. Else, it's new post
   let { postIdSlug } = useParams();
-
-  console.log("postIdSlug", postIdSlug);
 
   // Access to global props
   const postContext = useContext(PostContext);
@@ -38,13 +32,14 @@ const PostEditor = props => {
   // Check for valid id slug
   useEffect(() => {
     if (postIdSlug) {
+      // check for id validation
       let editPost = posts.find(post => post._id === postIdSlug);
       if (!editPost) {
         console.log("the id is not available: 404.");
         history.push("/404");
       }
     }
-  }, []);
+  }, [postIdSlug]);
 
   //
   const submitHandler = () => {

@@ -34,16 +34,12 @@ function App() {
           <Route path="/preview">
             <Preview />
           </Route>
-          {/* <Route path="/admin/new-post">
-            <NewPost />
-          </Route> */}
           <Route path="/admin/edit-post/:postIdSlug">
             <PostEditor />
           </Route>
           <Route path="/admin/edit-post">
             <PostEditor />
           </Route>
-
           <Route path="/admin">
             <Admin />
           </Route>

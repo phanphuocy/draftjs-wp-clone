@@ -2,11 +2,22 @@
 @import "../../styles/constants";
 
 .adminHeaderContainer {
-  background-color: $plum-500;
+  // background-color: $plum-500;
+  background: rgb(121, 62, 92);
+  background: linear-gradient(
+    90deg,
+    rgba(121, 62, 92, 1) 0%,
+    rgba(166, 75, 101, 1) 55%,
+    rgba(236, 102, 101, 1) 100%
+  );
   display: flex;
   justify-content: space-between;
   height: 46px;
   width: 100%;
+  //
+  -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1);
 }
 
 .adminHeaderLeftNavigation {

@@ -74,6 +74,7 @@ export default (state, action) => {
           )
         };
       }
+      break;
 
     case CREATE_EMPTY_EDITING:
       return {
